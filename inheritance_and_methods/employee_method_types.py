@@ -96,3 +96,56 @@ is_valid_salary("abc")  -> False
 =================================================
 
 """
+
+class Employee:
+    raise_pct = 5
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    # Instance Method
+    def apply_raise(self):
+        self.salary = self.salary + (self.salary * Employee.raise_pct / 100)
+
+    # Class Method
+    @classmethod
+    def set_raise_percentage(cls, new_pct):
+        cls.raise_pct = new_pct
+
+    # Alternate Constructor
+    @classmethod
+    def from_string(cls, data):
+        name, salary = data.split(",")
+        return cls(name, int(salary))
+
+    # Static Method
+    @staticmethod
+    def is_valid_salary(amount):
+        if (type(amount) == int or type(amount) == float) and amount > 0:
+            return True
+        return False
+
+
+e1 = Employee("Alice", 100000)
+e2 = Employee("Bob", 80000)
+e3 = Employee.from_string("Carol,75000")
+
+e1.apply_raise()
+e2.apply_raise()
+e3.apply_raise()
+
+Employee.set_raise_percentage(10)
+
+e1.apply_raise()
+e2.apply_raise()
+e3.apply_raise()
+
+print(e1.name, "->", e1.salary)
+print(e2.name, "->", e2.salary)
+print(e3.name, "->", e3.salary)
+
+print(Employee.is_valid_salary(50000))
+print(Employee.is_valid_salary(-100))
+print(Employee.is_valid_salary("abc"))
+

@@ -67,3 +67,39 @@ Rex is a Beagle
 =================================================
 
 """
+
+# Parent Class
+class Animal:
+    def __init__(self, name, sound):                    #it is a constructor
+        self.name = name                                
+        self.sound = sound
+
+    def speak(self):                                    #it will print the name and sound of the animal
+        print(f"{self.name} says {self.sound}")
+
+
+# Child Class
+class Dog(Animal):                                  #it is a child class that inherits from the parent class Animal
+    def __init__(self, name, breed):
+        # Call parent constructor
+        super().__init__(name, "Woof")              #super is used to call the parent constructor
+        self.breed = breed
+
+    def describe(self):
+        print(f"{self.name} is a {self.breed}")
+
+
+# Driver Code
+a = Animal("Cat", "Meow")
+print("Animal:")
+d1 = Dog("Buddy", "Labrador")
+d2 = Dog("Rex", "Beagle")
+
+a.speak()
+
+d1.speak()
+d1.describe()
+
+d2.speak()
+d2.describe()
+
